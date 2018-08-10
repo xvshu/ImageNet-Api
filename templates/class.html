@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>XSImageNet</title>
+    <!-- load CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="/static/css/tooplate-style.css">
+
+    <link rel="stylesheet" href="/static/css/jquery-ui.css">
+
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/jquery-ui.js"></script>
+    <!-- https://jquery.com/ --> <!-- http://kenwheeler.github.io/slick/ -->
+
+</head>
+
+<body style="background: #2c2a35;">
+
+    <button style="font-size: 24px" onclick="show_add_img()" class="btn btn-primary tm-btn-submit">新增类别</button>
+    &nbsp;<button style="font-size: 24px" onclick="show_fit_img()" class="btn btn-primary tm-btn-submit">测试图片</button>
+<div style="height: 10px"></div>
+    全部类别：
+<div>
+    {% for row in classlist %}
+        <img style="height: 60px;margin: 2px;" src="/ai/class/img/show?class_name={{row}}" class="img-fluid mb-4">
+        <button class="btn" style="margin: 2px;height: 30px">{{row}}类</button>
+    {% endfor %}
+</div>
+
+
+<div id="dialog_add_img" title="新增图片" style="width:300px;">
+    <form  action="/ai/class/img/add" method="post" enctype="multipart/form-data">
+        类别名称：
+        <input name="class_name" type="text" style="width: 200px;">
+        <br/>
+        上传图片: <input type="file" name="imagefiles[]" multiple=""  />
+        <br/>
+        <button type="submit" class="btn">确定</button>
+        <br/>
+    </form>
+
+</div>
+
+<div id="dialog_fit_img" title="校验网络" style="width:300px;">
+    <form  action="/img/fit" method="post" enctype="multipart/form-data">
+        上传图片: <input type="file" name="imagefile" multiple=""  />
+        <br/>
+        <button type="submit" class="btn">确定</button>
+        <br/>
+    </form>
+</div>
+
+<script>
+    $(function() {
+        $("#dialog_add_img").dialog({
+            autoOpen: false
+        });
+        $("#dialog_fit_img").dialog({
+            autoOpen: false
+        });
+    });
+
+    function show_add_img() {
+        $("#dialog_add_img").dialog("open");
+    }
+
+    function show_fit_img() {
+        $("#dialog_fit_img").dialog("open");
+    }
+</script>
+
+</body>
+</html>

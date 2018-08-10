@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>XSImageNet</title>
+    <!-- load CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="/static/css/tooplate-style.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.css">
+
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/jquery-ui.js"></script>
+
+    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
+
+</head>
+
+<body>
+<div id="tm-bg"></div>
+<div id="tm-wrap">
+    <div class="tm-main-content">
+        <div class="container tm-site-header-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
+                    <div class="tm-site-header">
+                        <h1 class="mb-4">ImageNetAI平台</h1>
+                        <img src="/static/img/underline.png" class="img-fluid mb-4">
+                        <p>c</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="content">
+                        <div class="grid">
+                            <div class="grid__item" id="home-link">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-th fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">Home</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+
+                                        <div> <iframe id="frame_class_show" style="width: 100%;height: 500px" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" src="/ai/class/getall"></iframe></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid__item" id="team-link">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-random fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">ReTrain</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="p-sm-4 p-2">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h2 class="tm-page-title">Background of Tensorflow</h2>
+                                                </div>
+                                            </div>
+                                            <div class="row tm-reverse-sm">
+                                                <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                                    <p class="mb-4">您如果确定需要重新训练，请点击重新训练按钮，稍后片刻，您会收到训练成功的消息，届时，您将看到新的训练结果。</p>
+
+                                                    <button id="ai_retrian" onclick="retain()" class="btn btn-primary tm-btn-submit">重新训练</button>
+                                                    <div id="ai_retrain_txt" style="color:green"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid__item">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-microchip fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">MoreNet</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="p-sm-4 p-2">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h2 class="tm-page-title">Faster Rcnn</h2>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <p>如果您满足图片分类，我给您准备好了基于Faster Rcnn的图片对象识别c
+                                                    <p>GitHub：<a target="_blank" href="https://github.com/xvshu/keras-frcnn-web">https://github.com/xvshu/keras-frcnn-web</a></p>
+                                                    <p>利用keras建立 faster rcnn网络，训练完成后，将检测api释放为rest接口，方便后端调用</p>
+                                                    <p>linux 环境搭建</p>
+
+                                                    <p>1. wget  https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz</p>
+                                                    <p>2. tar Jxvf  Python-3.5.2.tar.xz</p>
+                                                    <p>3. cd Python-3.5.2</p>
+                                                    <p>4. ./configure --prefix=/usr/local/python3</p>
+                                                    <p>5. make && make install  # 成功提示：Ignoring ensurepip failure: pip 7.1.2 requires SSL/TLS</p>
+                                                    <p>6. ln -s /usr/local/python3/bin/pip3.5 /usr/local/bin/pip3.5</p>
+                                                    <p>7. ln -s /usr/local/python3/bin/python3.5 /usr/local/bin/python3</p>
+                                                    <p>8. pip3.5 install --upgrade pip</p>
+                                                    <p>9. pip3.5 install keras</p>
+                                                    <p> 10. pip3.5 install  tensorflow</p>
+                                                    <p>11. pip3.5 install flask</p>
+                                                    <p>12. pip3.5 install  flask_httpauth</p>
+                                                    <p>13. pip3.5 install  werkzeug</p>
+                                                    <p>14.pip install opencv-python</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="p-sm-4 p-2 tm-img-container">
+                                                        <div class="tm-img-slider" id="tmImgSlider">
+                                                            <img src="/static/img/gallery-img-01-tn.jpg" alt="Image" class="tm-slider-img">
+                                                            <img src="/static/img/gallery-img-02-tn.jpg" alt="Image" class="tm-slider-img">
+                                                            <img src="/static/img/gallery-img-03-tn.jpg" alt="Image" class="tm-slider-img">
+                                                            <img src="/static/img/gallery-img-06-tn.jpg" alt="Image" class="tm-slider-img">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid__item">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-comments fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">Contact</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="pt-sm-4 pb-sm-4 pl-sm-5 pr-sm-5 pt-2 pb-2 pl-3 pr-3">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h2 class="tm-page-title">Contact Us</h2>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-12">
+                                                    <p>欢迎您联系我：</p>
+                                                    <p>Email：xvshu1@163.com</p>
+                                                    <p>GitHub：<a target="_blank" href="https://github.com/xvshu">https://github.com/xvshu/</a></p>
+                                                    <p>CSDN：<a target="_blank" href="https://blog.csdn.net/xvshu">https://blog.csdn.net/xvshu</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- .tm-main-content -->
+</div>
+
+
+<!-- load JS -->
+      <!-- https://jquery.com/ --> <!-- http://kenwheeler.github.io/slick/ -->
+<script src="/static/js/anime.min.js"></script>                     <!-- http://animejs.com/ -->
+<script src="/static/js/main.js"></script>
+<script>
+
+    function setupFooter() {
+        var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
+
+        var main = $('.tm-main-content');
+
+        if($(window).height() < pageHeight) {
+            main.addClass('tm-footer-relative');
+        }
+        else {
+            main.removeClass('tm-footer-relative');
+        }
+    }
+
+    /* DOM is ready
+     ------------------------------------------------*/
+    $(function(){
+
+        setupFooter();
+
+        $(window).resize(function(){
+            setupFooter();
+        });
+
+        $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
+    });
+
+    function retain(){
+        alert("开始训练，请稍后…………");
+        $.get("/ai/train",function(data,status){
+            alert("训练成功，可以开始使用新的模型！");
+        });
+    }
+
+
+</script>
+
+</body>
+</html>
