@@ -11,7 +11,7 @@ norm_size = 299
 def args_parse():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
-    ap.add_argument("-m", "--model",default="traffic_sign.model",
+    ap.add_argument("-m", "--model",default="D:\\Data\\ai\\model\\traffic_sign.model",
                     help="path to trained model model")
     ap.add_argument("-i", "--image",default="D:\\Data\\ai\\lenet\\img\\001.jpg",
                     help="path to input image")

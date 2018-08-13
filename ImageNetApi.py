@@ -11,8 +11,8 @@ import cv2
 
 
 app = Flask(__name__)
-# 图片最大为16M
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+# 图片最大为512M
+app.config['MAX_CONTENT_LENGTH'] = 512 * 1024 * 1024
 auth = HTTPBasicAuth()
 
 #设置post请求中获取的图片保存的路径
@@ -90,6 +90,7 @@ def img_show():
 @app.route('/ai/train', methods=['GET'])
 def ai_train():
     AiResNet50.train()
+    return httpResultWhiteMsg.send("训练成功！")
 
 @app.route('/img/fit', methods=['POST'])
 def img_fit():

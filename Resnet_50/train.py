@@ -30,7 +30,7 @@ def args_parse():
                     help="path to input dataset_test")
     ap.add_argument("-dtrain", "--dataset_train", default=img_file_path.File_Train,
                     help="path to input dataset_train")
-    ap.add_argument("-m", "--model", default="traffic_sign.model",
+    ap.add_argument("-m", "--model", default="D:\\Data\\ai\\model\\traffic_sign.model",
                     help="path to output model")
     ap.add_argument("-p", "--plot", type=str, default="plot.png",
                     help="path to output accuracy/loss plot")
@@ -40,9 +40,9 @@ def args_parse():
 
 # initialize the number of epochs to train for, initial learning rate,
 # and batch size
-EPOCHS = 10
+EPOCHS = 50
 INIT_LR = 1e-3
-BS = 3
+BS = 10
 CLASS_NUM = 3
 norm_size = 224
 
@@ -87,13 +87,14 @@ def train(aug,trainX,trainY,testX,testY,args):
 
     # train the network
     print("[INFO] training network...")
-    H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
+    model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
                             validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,
                             epochs=EPOCHS, verbose=1)
 
     # save the model to disk
     print("[INFO] serializing network...")
     model.save(args["model"])
+    print("[INFO] training over")
 
     # plot the training loss and accuracy
     # plt.style.use("ggplot")
@@ -123,6 +124,18 @@ class AiResNet50(object):
                                  height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
                                  horizontal_flip=True, fill_mode="nearest")
         train(aug,trainX,trainY,testX,testY,args)
+
+# if __name__ == '__main__':
+#     args = args_parse()
+#     train_file_path = args["dataset_train"]
+#     test_file_path = args["dataset_test"]
+#     trainX,trainY = load_data(train_file_path)
+#     testX,testY = load_data(test_file_path)
+#     # construct the image generator for data augmentation
+#     aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
+#                              height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
+#                              horizontal_flip=True, fill_mode="nearest")
+#     train(aug,trainX,trainY,testX,testY,args)
 
 
 
