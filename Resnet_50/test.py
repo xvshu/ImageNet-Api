@@ -1,6 +1,7 @@
 # import the necessary packages
 from keras.preprocessing.image import img_to_array
 from keras.models import load_model
+from Parameter import Parameters
 import numpy as np
 import argparse
 import imutils
@@ -11,7 +12,7 @@ norm_size = 299
 def args_parse():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
-    ap.add_argument("-m", "--model",default="D:\\Data\\ai\\model\\traffic_sign.model",
+    ap.add_argument("-m", "--model",default=Parameters.model_path,
                     help="path to trained model model")
     ap.add_argument("-i", "--image",default="D:\\Data\\ai\\lenet\\img\\001.jpg",
                     help="path to input image")

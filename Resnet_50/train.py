@@ -19,6 +19,7 @@ import sys
 from Resnet_50.Resnet50 import ResnetBuilder
 from keras.optimizers import SGD
 from Parameter import img_file_path
+from Parameter import Parameters
 sys.path.append('..')
 
 
@@ -30,7 +31,7 @@ def args_parse():
                     help="path to input dataset_test")
     ap.add_argument("-dtrain", "--dataset_train", default=img_file_path.File_Train,
                     help="path to input dataset_train")
-    ap.add_argument("-m", "--model", default="D:\\Data\\ai\\model\\traffic_sign.model",
+    ap.add_argument("-m", "--model", default=Parameters.model_path,
                     help="path to output model")
     ap.add_argument("-p", "--plot", type=str, default="plot.png",
                     help="path to output accuracy/loss plot")
@@ -40,7 +41,7 @@ def args_parse():
 
 # initialize the number of epochs to train for, initial learning rate,
 # and batch size
-EPOCHS = 50
+EPOCHS = 30
 INIT_LR = 1e-3
 BS = 10
 CLASS_NUM = 3
