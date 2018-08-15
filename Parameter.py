@@ -14,7 +14,11 @@ class httpResultWhiteMsg:
 class Parameters:
     host='172.30.53.250'
     port=8899
+    TensorBoard_port=6006
     model_path="D:\\Data\\ai\\model\\traffic_sign.model"
     user="admin"
     pwd="admin"
+    object_map={"000":"driverCard","001":"hkb","002":"idcard","003":"jhz",
+                "004":"relativesPhoto","005":"socialSecurity","006":"vehicleCard"}
+    logdir="D:\\Data\\ai\\log"
 

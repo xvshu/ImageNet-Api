@@ -67,7 +67,7 @@ def class_getall():
     files = os.listdir(img_file_path.File_Train)
     print("class_getall:"+",".join(files))
 
-    return render_template("class.html",classlist=files)
+    return render_template("class.html",classlist=files,object_map=Parameters.object_map)
 
 #想某类别下添加照片
 @app.route('/ai/class/img/add', methods=['POST'])

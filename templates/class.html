@@ -27,7 +27,7 @@
 <div>
     {% for row in classlist %}
         <img style="height: 60px;margin: 2px;" src="/ai/class/img/show?class_name={{row}}" class="img-fluid mb-4">
-        <button class="btn" style="margin: 2px;height: 30px">{{row}}类</button>
+        <button class="btn" style="margin: 2px;height: 30px">{{object_map[row]}}类</button>
     {% endfor %}
 </div>
 

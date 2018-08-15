@@ -42,6 +42,10 @@ def predict(args,filepath):
     #print (result.shape)
     proba = np.max(result)
     label = str(np.where(result==proba)[0])
+    for key in Parameters.object_map:
+        if(key in label):
+            label=Parameters.object_map[key];
+            break
     label = "{}: {:.2f}%".format(label, proba * 100)
     print(label)
     return label
