@@ -31,11 +31,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html",tensorBoard_url="http://"+Parameters.host+":"+Parameters.TensorBoard_port+"/#scalars")
 
 @app.route('/index')
 def index_2():
-    return render_template("index.html")
+    return index()
 
 @app.route('/login')
 def login():

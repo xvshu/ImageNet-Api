@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>XSImageNet</title>
+    <title>ImageNet</title>
     <!-- load CSS -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
@@ -161,10 +161,10 @@
     });
 
     function retain(){
-        alert("开始训练，请稍后…………");
+        alert("开始训练，稍后跳转tensorBoard监控页面…………");
         $.get("/ai/train",function(data,status){
-            alert("训练成功，可以开始使用新的模型！");
         });
+        window.location.href='{{tensorBoard_url}}';
     }
 
     function logout(){
