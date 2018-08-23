@@ -81,7 +81,7 @@ def train(aug,trainX,trainY,testX,testY,args):
     # opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
     # model.compile(loss="categorical_crossentropy", optimizer=opt,
     #               metrics=["accuracy"])
-    sgd = SGD(decay=0.0001,momentum=0.9)
+    sgd = SGD(decay=0.001,momentum=0.9)
     model.compile(loss='categorical_crossentropy',optimizer=sgd,metrics=['accuracy'])
 
     # train the network

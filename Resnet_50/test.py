@@ -4,6 +4,7 @@ from keras.models import load_model
 from Parameter import Parameters
 import numpy as np
 import keras
+from utils import RedisUtil
 import argparse
 import imutils
 import cv2
@@ -51,8 +52,9 @@ class AI_Test(object):
         proba = np.max(result)
         label = str(np.where(result==proba)[0])
         label = label.replace("[","").replace("]","").zfill(3)
-
-        for key in Parameters.object_map:
+        redisUtil = RedisUtil.RedisUtil()
+        object_map=redisUtil.h_getall(name=Parameters.redis_key_img_labletonum)
+        for key in object_map:
             if(label in key):
                 label=Parameters.object_map[key];
                 break

@@ -7,18 +7,12 @@ from Resnet_50.test import AI_Test
 from Parameter import httpResultWhiteMsg
 from Parameter import Parameters
 from datetime import timedelta
-from keras.models import load_model
-from keras.preprocessing.image import img_to_array
-from utils import RedisUtil
-import keras
-import numpy as np
 import io
 import uuid
 import os
 import cv2
 
 pass_urls=["static","login","logout"]
-norm_size = 224
 app = Flask(__name__)
 # 图片最大为512M
 app.config['MAX_CONTENT_LENGTH'] = 512 * 1024 * 1024
@@ -37,11 +31,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    return render_template("index.html",tensorBoard_url="http://"+Parameters.host+":"+Parameters.TensorBoard_port+"/#scalars")
+    return render_template("index.html")
 
 @app.route('/index')
 def index_2():
-    return index()
+    return render_template("index.html")
 
 @app.route('/login')
 def login():
@@ -72,8 +66,8 @@ def class_getall():
     #返回目前平台能识别的所有类别
     files = os.listdir(img_file_path.File_Train)
     print("class_getall:"+",".join(files))
-    redisUtil = RedisUtil.RedisUtil()
-    return render_template("class.html",classlist=files,object_map=redisUtil.h_getall(name=Parameters.redis_key_img_labletonum))
+
+    return render_template("class.html",classlist=files,object_map=Parameters.object_map)
 
 #想某类别下添加照片
 @app.route('/ai/class/img/add', methods=['POST'])
@@ -81,43 +75,24 @@ def img_add():
 
     class_name = request.form["class_name"]
     if(class_name==''):
-        return httpResultWhiteMsg.send("必须输入类别名称")
+        return httpResultWhiteMsg.send("必须选择上传类别")
 
     #分别获取post请求中的图片信息
     upload_files = request.files.getlist("imagefiles[]")
-    if(len(upload_files)<Parameters.min_num_img):
-        return httpResultWhiteMsg.send("图片总数低于下限，下限为："+str(Parameters.min_num_img)+"张")
+    if(len(upload_files)<10):
+        return httpResultWhiteMsg.send("必须上传大于10张图片")
+    #获取post请求中新增的类别名称
 
-    if(len(upload_files)>Parameters.max_num_img):
-        return httpResultWhiteMsg.send("图片总数超过上限，上限为："+str(Parameters.max_num_img)+"张")
-
-    # 判断redis中此类是否已经存在
-    redisUtil = RedisUtil.RedisUtil()
-    if(redisUtil.l_exists(name=Parameters.redis_key_img_AllClass,value=class_name)):
+    class_path=img_file_path.File_Train+"/"+class_name;
+    test_path=img_file_path.File_Test+"/"+class_name;
+    print("class_name："+class_name)
+    print("class_path："+class_path)
+    if(os.path.exists(class_path)):
         return httpResultWhiteMsg.send("Class 已经存在")
     else:
-        redisUtil.l_push(name=Parameters.redis_key_img_AllClass,value=class_name)
-
-
-    # 找到class 对应的数字，并存入redis映射
-    class_num=0
-    class_path=""
-    test_path=""
-    while True:
-        file_name = str(class_num).zfill(3)
-        #获取post请求中新增的类别名称
-        class_path=img_file_path.File_Train+"/"+file_name;
-        test_path=img_file_path.File_Test+"/"+file_name;
-        print("class_name："+class_name)
-        print("class_path："+class_path)
-        if(os.path.exists(class_path)):
-            print("class_path："+class_path+"已经存在")
-        else:
-            os.mkdir(class_path)
-            os.mkdir(test_path)
-            print("class_path："+class_path+" add success")
-            redisUtil.h_set(name=Parameters.redis_key_img_labletonum,val_key=file_name,val_value=class_name)
-        class_num = class_num +1
+        os.mkdir(class_path)
+        os.mkdir(test_path)
+        print("class_path："+class_path+" add success")
 
     #获取post请求中新增的类别中是测试数据还是训练数据、
     train_count=len(upload_files)/3
@@ -137,7 +112,7 @@ def img_show():
     #获取post请求中新增的类别名称
     class_name = request.args.get('class_name')
     #返回这个类别下的所有图片：仅供展示
-    file_path=img_file_path.File_Test+"\\"+class_name+"\\1.jpg";
+    file_path=img_file_path.File_Test+"/"+class_name+"/1.jpg";
     image = cv2.imread(file_path)
     return _serve_pil_image(file_path)
 
