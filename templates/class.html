@@ -29,8 +29,11 @@
     全部类别：
 <div>
     {% for row in classlist %}
-        <img style="height: 60px;margin: 2px;" src="/ai/class/img/show?class_name={{row}}" class="img-fluid mb-4">
-        <button class="btn" style="margin: 2px;height: 30px">{{object_map[row]}}类</button>
+        <div style="float: left;margin-left: 5px;margin-bottom: 12px;">
+            <img style="width: 220px;height: 220px;" src="/ai/class/img/show?class_name={{row}}" class="img-fluid">
+            <br/>
+            <li style="color:black;text-align:center;background-color:whitesmoke;width: 220px;height: 30px">{{object_map[row]}}</li>
+        </div>
     {% endfor %}
 </div>
 
