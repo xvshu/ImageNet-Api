@@ -6,8 +6,8 @@ matplotlib.use("Agg")
 from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing.image import img_to_array
 from keras.utils import to_categorical
-from keras.callbacks import TensorBoard
 from imutils import paths
+from keras.callbacks import TensorBoard
 import numpy as np
 import argparse
 import random
@@ -39,10 +39,10 @@ def args_parse():
 
 # initialize the number of epochs to train for, initial learning rate,
 # and batch size
-EPOCHS = 30
+EPOCHS = 500
 INIT_LR = 1e-3
 BS = 10
-CLASS_NUM = 3
+CLASS_NUM = 6
 norm_size = 224
 
 def load_data(path):

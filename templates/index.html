@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ImageNet</title>
+    <title>ELImageNet</title>
     <!-- load CSS -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
                     <div class="tm-site-header">
-                        <h1 class="mb-4">ImageNetAI平台</h1>
+                        <h1 class="mb-4">Eloancn AI平台</h1>
                         <img src="/static/img/underline.png" class="img-fluid mb-4">
                         <p>基于Keras+Tensorflow搭建，提供ResNet50神经网络的图片分类平台。</p>
                     </div>
@@ -161,10 +161,10 @@
     });
 
     function retain(){
-        alert("开始训练，稍后跳转tensorBoard监控页面…………");
+        alert("开始训练，请稍后…………");
         $.get("/ai/train",function(data,status){
+            alert("训练成功，可以开始使用新的模型！");
         });
-        window.location.href='{{tensorBoard_url}}';
     }
 
     function logout(){

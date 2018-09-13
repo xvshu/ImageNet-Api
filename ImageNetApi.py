@@ -35,9 +35,10 @@ else:
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
 @app.route('/')
 def index():
-    return render_template("index.html",tensorBoard_url="http://"+Parameters.host+":"+Parameters.TensorBoard_port+"/#scalars")
+    return render_template("index.html")
 
 @app.route('/index')
 def index_2():
@@ -137,7 +138,7 @@ def img_show():
     #获取post请求中新增的类别名称
     class_name = request.args.get('class_name')
     #返回这个类别下的所有图片：仅供展示
-    file_path=img_file_path.File_Test+"\\"+class_name+"\\1.jpg";
+    file_path=img_file_path.File_Test+"/"+class_name+"/1.jpg";
     image = cv2.imread(file_path)
     return _serve_pil_image(file_path)
 
