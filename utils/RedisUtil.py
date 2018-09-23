@@ -60,7 +60,11 @@ class RedisUtil(object):
 
     def h_del(self,name,val_key):
         redi = redis.Redis(connection_pool=self.__pool)
-        redi.hdel(name=name,key=val_key)
+        redi.hdel(name=name,keys=val_key)
+
+    def h_delall(self):
+        redi = redis.Redis(connection_pool=self.__pool)
+        redi.hdel("*","*")
 
     def l_push(self,name,value):
         redi = redis.Redis(connection_pool=self.__pool)

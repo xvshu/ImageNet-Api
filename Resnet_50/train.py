@@ -39,10 +39,10 @@ def args_parse():
 
 # initialize the number of epochs to train for, initial learning rate,
 # and batch size
-EPOCHS = 500
+EPOCHS = 2
 INIT_LR = 1e-3
-BS = 10
-CLASS_NUM = 6
+BS = 50
+CLASS_NUM = 0
 norm_size = 224
 
 def load_data(path):
@@ -71,12 +71,17 @@ def load_data(path):
     labels = np.array(labels)
 
     # convert the labels from integers to vectors
+    CLASS_NUM=len(os.listdir(img_file_path.File_Train))
+    print("CLASS_NUM is "+str(CLASS_NUM))
     labels = to_categorical(labels, num_classes=CLASS_NUM)
     return data,labels
 
 def train(aug,trainX,trainY,testX,testY,args):
     # initialize the model
     print("[INFO] compiling model...")
+    CLASS_NUM=len(os.listdir(img_file_path.File_Train))
+    print("CLASS_NUM is "+str(CLASS_NUM))
+
     model = ResnetBuilder.build_resnet_50(input_shape=[norm_size,norm_size,3], num_outputs=CLASS_NUM)
     # opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
     # model.compile(loss="categorical_crossentropy", optimizer=opt,
@@ -116,6 +121,7 @@ class AiResNet50(object):
         args = args_parse()
         train_file_path = args["dataset_train"]
         test_file_path = args["dataset_test"]
+
         trainX,trainY = load_data(train_file_path)
         testX,testY = load_data(test_file_path)
         # construct the image generator for data augmentation
